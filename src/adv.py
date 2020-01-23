@@ -1,3 +1,4 @@
+from player import Player
 from room import Room
 
 # Declare all the rooms
@@ -38,6 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+new_player = Player("player1", room["outside"])
 
 # Write a loop that:
 #
@@ -49,3 +51,35 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    print(new_player.__str__())
+
+    user_input = input(
+        # MAY HAVE TO USE SPLIT() BELOW LIKE THE OTHER FUNCTIONS THAT USED INPUT
+        "Press 'q' to quit and 'n', 's', 'e', or 'w' to move north, south, east, and west.  ".lower())
+
+    if user_input[0] == "q":
+        break
+    elif user_input[0] == "n":
+        if new_player.location.n_to != "":
+            new_player.location = new_player.location.n_to
+        else:
+            print("There is nothing in that direction! Try again.")
+    elif user_input[0] == "s":
+        if new_player.location.s_to != "":
+            new_player.location = new_player.location.s_to
+        else:
+            print("There is nothing in that direction! Try again.")
+    elif user_input[0] == "e":
+        if new_player.location.e_to != "":
+            new_player.location = new_player.location.e_to
+        else:
+            print("There is nothing in that direction! Try again.")
+    elif user_input[0] == "w":
+        if new_player.location.w_to != "":
+            new_player.location = new_player.location.w_to
+        else:
+            print("There is nothing in that direction! Try again.")
+    else:
+        print("Invalid input! 'n', 's', 'e', 'w' and 'q' are all valid commands. Try once more. ")
